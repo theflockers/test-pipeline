@@ -1,0 +1,30 @@
+---
+apiVersion: tekton.dev/v1
+kind: Pipeline
+metadata:
+  name: test-pipeline-no-params
+  labels:
+    app.kubernetes.io/version: "0.1"
+  annotations:
+    tekton.dev/pipelines.minVersion: "0.12.1"
+    tekton.dev/tags: release
+spec:
+  description: >-
+    Test Pipeline 
+  workspaces:
+    - name: release-workspace
+  tasks:
+    - name: test-task
+      taskSpec:
+        workspaces:
+          - name: data
+        steps:
+          - name: test 
+            image: quay.io/redhat-appstudio/release-service-utils:bc81bfed6062a386e48a76b252c6f33b52c411b0
+            script: |
+              #!/usr/bin/env sh
+              set -eu
+              echo "This pipeline has no params"               
+      workspaces:
+        - name: data
+          workspace: release-workspace
