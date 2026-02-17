@@ -11,8 +11,6 @@ metadata:
 spec:
   description: >-
     Test Pipeline 
-  workspaces:
-    - name: release-workspace
   tasks:
     - name: test-task
       taskSpec:
@@ -25,6 +23,3 @@ spec:
               #!/usr/bin/env sh
               set -eu
               echo "This pipeline has no params"               
-      workspaces:
-        - name: data
-          workspace: release-workspace
