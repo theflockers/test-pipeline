@@ -20,6 +20,6 @@ spec:
             script: |
               #!/usr/bin/env sh
               set -eu
-              x=$(shuf -i 1-60)
+              x=$(shuf -i 1-60 -n 1)
               echo "Waiting for $x seconds..."
               sleep $x
